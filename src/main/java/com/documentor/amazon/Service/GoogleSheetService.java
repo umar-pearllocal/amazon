@@ -2,6 +2,7 @@ package com.documentor.amazon.Service;
 
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.ValueRange;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,7 @@ public class GoogleSheetService {
     @Value("${sheets.id}")
     private String spreadsheetId;
 
-    private final Sheets sheetsService;
-
-    // Constructor injection for Sheets service
-    public GoogleSheetWriter(Sheets sheetsService) {
-        this.sheetsService = sheetsService;
-    }
+    private Sheets sheetsService;
 
     public void writeOrdersToSheet(List<Map<String, Object>> orders) throws IOException {
         List<List<Object>> data = new ArrayList<>();

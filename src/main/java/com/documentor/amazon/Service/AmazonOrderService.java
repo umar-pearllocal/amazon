@@ -12,19 +12,13 @@ import java.util.*;
 public class AmazonOrderService {
 
     @Value("${access.key}")
-    private final String accessToken;
+    private String accessToken;
     @Value("${order.ep}")
-    private final String ordersEndpoint;
+    private String ordersEndpoint;
     @Value("${order.items.ep}")
-    private final String orderItemsEndpoint;
+    private String orderItemsEndpoint;
 
     private final RestTemplate restTemplate = new RestTemplate();
-
-    public AmazonOrderService(String accessToken, String ordersEndpoint, String orderItemsEndpoint) {
-        this.accessToken = accessToken;
-        this.ordersEndpoint = ordersEndpoint;
-        this.orderItemsEndpoint = orderItemsEndpoint;
-    }
 
     @Scheduled(cron = "* * * * *")
     public List<Map<String, Object>> fetchOrders() {
