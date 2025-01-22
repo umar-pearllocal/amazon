@@ -27,7 +27,8 @@ public class MapListJsonConverter implements AttributeConverter<List<Map<String,
     @Override
     public List<Map<String, Object>> convertToEntityAttribute(String dbData) {
         try {
-            return objectMapper.readValue(dbData, new TypeReference<List<Map<String, Object>>>() {});
+            return objectMapper.readValue(dbData, new TypeReference<>() {
+            });
         } catch (IOException e) {
             throw new IllegalArgumentException("Error reading JSON to map list", e);
         }
